@@ -1,0 +1,373 @@
+/* PENINGKATAN GLOBAL */
+html { scroll-behavior: smooth; }
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+    font-family: 'Roboto', sans-serif; 
+    background: #FFFFFF;
+    color: #2D2D2D;
+    line-height: 1.7;
+}
+
+/* HEADER - Lebih Tajam dan Fokus */
+header {
+    text-align: center;
+    padding: 80px 20px 40px;
+    background: #395B64;
+    color: #E6F5F1;
+}
+/* Gambar Profil */
+#profile-picture {
+    width: 140px; 
+    height: 140px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 20px;
+    border: 4px solid #A5C9CA;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
+}
+
+/* Keyframes untuk animasi fade-in */
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+header h1 {
+    font-family: 'Poppins', sans-serif;
+    font-size: 3rem;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    animation: fadeInUp 1s ease-out 0.3s forwards; 
+    opacity: 0;
+}
+header p {
+    font-size: 1.2rem;
+    font-weight: 300;
+    color: #D3E0E2;
+    animation: fadeInUp 1s ease-out 0.6s forwards; 
+    opacity: 0;
+}
+
+/* NAVIGASI STICKY */
+#main-nav {
+    background: #395B64;
+    text-align: center;
+    padding: 15px 0;
+    position: sticky; 
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+}
+#main-nav a {
+    text-decoration: none;
+    color: #E6F5F1;
+    margin: 0 15px;
+    padding: 8px 15px;
+    transition: 0.3s ease-in-out;
+    font-weight: 500;
+    border-bottom: 2px solid transparent;
+}
+#main-nav a:hover,
+#main-nav a.active {
+    color: #A5C9CA;
+    border-bottom: 2px solid #A5C9CA;
+}
+
+/* SECTION */
+section {
+    padding: 80px 20px;
+    max-width: 1200px;
+    margin: auto;
+    text-align: center;
+}
+h2 {
+    font-family: 'Poppins', sans-serif;
+    font-size: 2.5rem;
+    margin-bottom: 25px;
+    text-align: center;
+    color: #395B64;
+    font-weight: 700;
+}
+h2::after {
+    content: '';
+    display: block;
+    width: 50px;
+    height: 3px;
+    background: #A5C9CA;
+    margin: 15px auto 0;
+    border-radius: 2px;
+}
+
+/* ABOUT */
+#about { background: #F4F4F4; }
+#about p {
+    text-align: center;
+    font-size: 1.1rem;
+    color: #555;
+    max-width: 900px;
+    margin: 20px auto 0;
+}
+
+/* PORTFOLIO - SWIPER SLIDER */
+.portfolio {
+    width: 100%;
+    height: auto;
+    margin-top: 40px;
+    padding: 0 50px; /* Ruang untuk navigasi panah */
+}
+
+/* Item Slider */
+.swiper-slide {
+    height: auto; 
+    display: flex;
+    justify-content: center;
+    align-items: stretch; /* Memastikan semua slide item tingginya sama */
+    padding-bottom: 40px; /* Ruang tambahan untuk pagination/dots */
+}
+
+.portfolio-item {
+    background: #FFFFFF;
+    border: 1px solid #E0E0E0;
+    border-radius: 8px;
+    overflow: hidden;
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+    position: relative;
+    text-align: left; 
+    width: 100%;
+    height: 100%; /* Memanfaatkan tinggi slide container */
+    display: flex;
+    flex-direction: column;
+}
+.portfolio-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 25px rgba(57, 91, 100, 0.3);
+}
+
+.image-wrapper {
+    position: relative;
+    /* --- INI ADALAH PERUBAHAN UNTUK RASIO POSTER (2:3) --- */
+    aspect-ratio: 2 / 3; 
+    /* --------------------------------------------------- */
+    overflow: hidden;
+    display: block;
+}
+.portfolio-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.4s ease;
+    display: block;
+}
+.portfolio-item:hover img {
+    transform: scale(1.02);
+}
+
+/* Efek Overlay dan Play Button */
+.play-overlay {
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(57, 91, 100, 0.6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+.portfolio-item:hover .play-overlay {
+    opacity: 1;
+}
+.play-overlay i {
+    font-size: 3rem;
+    color: #E6F5F1;
+    border: 3px solid #E6F5F1;
+    border-radius: 50%;
+    padding: 15px;
+    transition: transform 0.3s ease;
+}
+.play-overlay i:hover {
+    transform: scale(1.1);
+    background: rgba(230, 245, 241, 0.2);
+}
+
+/* GAYA FIGCAPTION (Tanpa Ikon) */
+.portfolio-item h3 {
+    font-family: 'Poppins', sans-serif;
+    padding: 15px 20px 5px;
+    color: #395B64;
+    font-weight: 600;
+}
+.portfolio-item figcaption {
+    padding-bottom: 20px;
+}
+.portfolio-item ul {
+    list-style: disc; /* Menggunakan bullet point standar */
+    padding: 0 20px 0 35px; /* Menambahkan padding kiri agar bullet terlihat */
+}
+.portfolio-item ul li {
+    font-size: 0.95rem; 
+    color: #444; 
+    margin-top: 5px;
+}
+.portfolio-item ul li strong {
+    color: #395B64; 
+    font-weight: 600;
+}
+
+/* GAYA NAVIGASI SWIPER */
+.swiper-button-next, .swiper-button-prev {
+    color: #395B64 !important;
+    top: 40% !important; /* Menyesuaikan posisi vertikal panah */
+    transform: translateY(-50%);
+}
+.swiper-pagination {
+    bottom: 0px !important; /* Memastikan pagination ada di bawah item */
+}
+.swiper-pagination-bullet-active {
+    background: #395B64 !important;
+}
+
+
+/* MODAL (Pop-up) */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 2000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.9);
+    padding-top: 60px;
+}
+.modal-content {
+    margin: 10% auto;
+    width: 90%;
+    max-width: 900px;
+    background: #FFF;
+    border-radius: 10px;
+    overflow: hidden;
+    animation: fadeIn 0.5s;
+}
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+.modal-header {
+    background: #395B64;
+    color: white;
+    padding: 15px 20px;
+    position: relative;
+}
+.modal-header h3 {
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+}
+.modal-body {
+    padding: 20px;
+    text-align: left;
+}
+.modal-body p {
+    margin-bottom: 15px;
+    color: #444; 
+    font-size: 1.05rem; 
+}
+.modal-body p strong { 
+    color: #395B64;
+    font-weight: 700;
+}
+.modal-body a {
+    display: inline-block;
+    padding: 10px 20px;
+    background: #A5C9CA;
+    color: #395B64;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: 500;
+    transition: background 0.3s;
+}
+.modal-body a:hover {
+    background: #7C99A1;
+}
+
+.close {
+    color: #fff;
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    font-size: 35px;
+    font-weight: bold;
+    transition: color 0.3s;
+}
+.close:hover,
+.close:focus {
+    color: #A5C9CA;
+    text-decoration: none;
+    cursor: pointer;
+}
+.video-embed {
+    position: relative;
+    width: 100%;
+    height: 0;
+    padding-bottom: 56.25%; /* Rasio 16:9 untuk video embed */
+    margin-bottom: 20px;
+}
+.video-embed iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 5px;
+}
+
+/* CONTACT & FOOTER */
+#contact p { font-size: 1.1rem; margin-bottom: 40px; color: #555; }
+#contact a {
+    display: inline-block;
+    margin: 10px;
+    padding: 15px 35px;
+    border-radius: 5px;
+    text-decoration: none;
+    background: #395B64;
+    color: #fff;
+    border: 2px solid #395B64;
+    transition: all 0.3s;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+}
+#contact a:hover {
+    background: #4B798A;
+    color: #fff;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(57, 91, 100, 0.5);
+}
+#contact a:nth-child(3) { /* Instagram/Kontak Sekunder */
+    background: transparent;
+    color: #395B64;
+    border: 2px solid #A5C9CA;
+}
+#contact a:nth-child(3):hover {
+    background: #A5C9CA;
+    color: #395B64;
+    box-shadow: none;
+    transform: none;
+}
+footer {
+    text-align: center;
+    padding: 25px;
+    background: #395B64;
+    color: #E6F5F1;
+    font-size: 0.9rem;
+}
+
+/* RESPONSIF SEDERHANA */
+@media (max-width: 768px) {
+    header h1 { font-size: 2.2rem; }
+    header p { font-size: 1rem; }
+    h2 { font-size: 2rem; }
+    #main-nav a { margin: 0 8px; padding: 8px 10px; font-size: 0.9rem; }
+    .portfolio { padding: 0 20px; }
+    .swiper-button-next, .swiper-button-prev { display: none !important; } /* Sembunyikan panah di HP */
+    .modal-content { margin: 10% 5%; width: 90%; }
+}
